@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const connection = require('../config/database/connection');
+const { generateToken } = require('../extra/generateToken');
 
 const getAll = async (_, res) => {
   const query = `SELECT * FROM users`;
@@ -60,7 +61,10 @@ const login = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: `User with email ${email} logged in successfully.`,
-      data: response[0],
+      data: {
+        ...response[0],
+        token: generateToken(response[0].ID, response[0].role),
+      },
     });
   } catch (error) {
     return res.status(400).json({
@@ -86,6 +90,7 @@ const register = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: `User added successfully.`,
+      token: generateToken(data[0].ID, data[0].role),
       data: data[0],
     });
   } catch (error) {
