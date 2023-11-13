@@ -12,8 +12,8 @@ const {
 
 router.get('/getAll', getAll);
 router.get('/getByID/:ID', getByID);
-router.post('/add', addEvent);
-router.put('/update/:ID', updateByID);
-router.delete('/delete/:ID', deleteByID);
+router.post('/add', isAuthenticated, addEvent);
+router.put('/update/:ID', isAuthenticated, updateByID);
+router.delete('/delete/:ID', isAuthenticated, deleteByID);
 
 module.exports = router;
