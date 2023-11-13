@@ -32,9 +32,9 @@ const CREATE_EVENTS_TABLE = `CREATE TABLE IF NOT EXISTS events (
 const CREATE_RESERVATIONS_TABLE = `CREATE TABLE IF NOT EXISTS reservations (
                                     ID INT AUTO_INCREMENT PRIMARY KEY,
                                     userID INT NOT NULL,
-                                    venueID INT NOT NULL,
-                                    FOREIGN KEY (venueID)
-                                    REFERENCES venues(ID)
+                                    eventID INT NOT NULL,
+                                    FOREIGN KEY (eventID)
+                                    REFERENCES events(ID)
                                     ON DELETE CASCADE,
                                     FOREIGN KEY (userID)
                                     REFERENCES users(ID)
