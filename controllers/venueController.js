@@ -103,19 +103,19 @@ const updateByID = async (req, res) => {
     if (!response.affectedRows)
       return res.status(400).json({
         success: false,
-        message: `User with id = ${ID} not found.`,
+        message: `Venue with id = ${ID} not found.`,
       });
 
     const data = await getVenueByID(ID);
     return res.status(200).json({
       success: true,
-      message: `User updated successfully.`,
+      message: `Venue updated successfully.`,
       data: data[0],
     });
   } catch (error) {
     return res.status(400).json({
       success: false,
-      message: `Error while trying to update user with id ${ID}.`,
+      message: `Error while trying to update venue with id ${ID}.`,
       error: error.message,
     });
   }
